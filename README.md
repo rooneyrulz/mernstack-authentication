@@ -22,7 +22,7 @@ MERN Stack authentication app
 Now you have the API server up and running, How do you test it?
 Here are some endpoints that you can test and make request to, using any API clients like Postman 
 
-1. POST /api/users/auth
+1. POST /api/users/auth <br/>
    You make a POST request to this endpoint in order to authenticate(login) a user with request body (email, password)
 2. POST /api/users
    You make a POST request to this endpoint in order to create(register) a user with request body (name, email, password)
