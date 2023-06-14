@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useRegisterMutation } from "../slices/userApiSlice";
 import { setCredentials } from "../slices/authSlice";
 
-import { Form, Button, Row, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
-import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 const RegisterScreen = () => {
   const [name, setName] = useState("");
@@ -92,6 +93,7 @@ const RegisterScreen = () => {
           ></Form.Control>
         </Form.Group>
 
+        {isLoading && <Loader />}
         <Button type='submit' variant='primary' className='mt-3'>
           Sign Up
         </Button>

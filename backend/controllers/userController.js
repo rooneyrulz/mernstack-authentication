@@ -8,9 +8,14 @@ import generateToken from "../utils/generateToken.js";
 const authUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("Fill in all fields");
+  }
+
   const user = await User.findOne({ email });
 
-  if (user && user.matchPassword(password)) {
+  if (user && await user.matchPassword(password)) {
     generateToken(res, user._id);
     res.status(200).json({
       _id: user._id,
@@ -28,6 +33,11 @@ const authUser = asyncHandler(async (req, res, next) => {
 // @access  Public
 const registerUser = asyncHandler(async (req, res, next) => {
   const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    res.status(400);
+    throw new Error("Fill in all fields");
+  }
 
   const userExists = await User.findOne({ email });
 
@@ -95,7 +105,7 @@ const updateUserProfile = asyncHandler(async (req, res, next) => {
     res.status(200).json({
       _id: updatedUser._id,
       name: updatedUser.name,
-      email: updatedUser.email
+      email: updatedUser.email,
     });
   } else {
     res.status(404);
