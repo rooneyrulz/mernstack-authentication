@@ -1,4 +1,5 @@
 import { apiSlice } from './apiSlice';
+import { logout } from './authSlice';
 
 const USERS_URL = '/api/users';
 
@@ -18,13 +19,22 @@ export const userApiSlice = apiSlice.injectEndpoints({
                 body: data
             })
         }),
-        logout: builder.mutation({
+        sendLogout: builder.mutation({
             query: () => ({
                 url: `${USERS_URL}/logout`,
                 method: 'POST'
-            })
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(logout());
+                    dispatch(apiSlice.util.resetApiState());
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         })
     })
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = userApiSlice;
+export const { useLoginMutation, useRegisterMutation, useSendLogoutMutation } = userApiSlice;

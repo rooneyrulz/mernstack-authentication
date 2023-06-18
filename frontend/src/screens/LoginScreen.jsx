@@ -32,8 +32,6 @@ const LoginScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
     loginUser();
   };
 
@@ -68,9 +66,8 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        {isLoading && <Loader />}
         <Button type='submit' variant='primary' className='mt-3'>
-          Sign In
+          {isLoading ? <Loader /> : "Sign In"}
         </Button>
 
         <Row className='py-3'>
