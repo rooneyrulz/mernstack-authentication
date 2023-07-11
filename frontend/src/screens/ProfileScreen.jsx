@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
@@ -16,7 +15,6 @@ const ProfileScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
@@ -31,7 +29,6 @@ const ProfileScreen = () => {
         password,
       }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
     } catch (error) {
       toast.error(error?.data?.message || "Invalid login");
     }

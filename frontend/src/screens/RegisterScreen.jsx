@@ -26,7 +26,7 @@ const RegisterScreen = () => {
     try {
       const res = await register({ name, email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error?.data?.message || "Invalid login");
     }
@@ -44,7 +44,7 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [navigate, userInfo]);
 

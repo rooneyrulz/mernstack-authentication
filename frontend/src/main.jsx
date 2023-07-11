@@ -19,6 +19,7 @@ import AboutScreen from "./screens/AboutScreen.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
 import ProfileScreen from "./screens/ProfileScreen";
+import DashboardScreen from "./screens/DashboardScreen";
 
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
 
       <Route element={<PrivateRoute />}>
         <Route path='profile' element={<ProfileScreen />} />
+        <Route path='dashboard' element={<DashboardScreen />} />
       </Route>
     </Route>
   )

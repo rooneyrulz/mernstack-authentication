@@ -24,7 +24,7 @@ const LoginScreen = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error?.data?.message || "Invalid login");
     }
@@ -37,7 +37,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [navigate, userInfo]);
 

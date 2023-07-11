@@ -25,6 +25,9 @@ const Header = () => {
     if (userInfo) {
       return (
         <>
+          <LinkContainer to='/dashboard'>
+            <Nav.Link>Dashboard</Nav.Link>
+          </LinkContainer>
           <NavDropdown title={userInfo.name} id='username'>
             <LinkContainer to='/profile'>
               <NavDropdown.Item>Profile</NavDropdown.Item>
